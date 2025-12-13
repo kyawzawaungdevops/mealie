@@ -1,7 +1,7 @@
 const EMAIL_REGEX
   = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const URL_REGEX = /[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
+const URL_REGEX = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
 
 export function required(v: string | undefined | null) {
   return !!v || "This Field is Required";
@@ -17,6 +17,10 @@ export function whitespace(v: string | null | undefined) {
 
 export function url(v: string | undefined | null) {
   return (!!v && URL_REGEX.test(v)) || "Must Be A Valid URL";
+}
+
+export function urlOptional(v: string | undefined | null) {
+  return v ? url(v) : true;
 }
 
 export function minLength(min: number) {
