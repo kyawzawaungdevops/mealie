@@ -1,11 +1,11 @@
 services:
   mealie:
     container_name: mealie
-    image: mealie:dev
-    build:
-      context: ../
-      target: production
-      dockerfile: ./docker/Dockerfile
+    image: mealie:v1
+      #build:
+      #context: ../
+      #target: production
+      #dockerfile: ./docker/Dockerfile
     restart: always
     volumes:
       - mealie-data:/app/data/
@@ -37,6 +37,8 @@ services:
     container_name: mealie_dev_postgres
     image: postgres:15
     restart: no
+    volumes:
+      - database-data:/var/lib/postgresql
     ports:
       - "5432:5432"
     environment:
@@ -45,4 +47,7 @@ services:
 
 volumes:
   mealie-data:
+    driver: local
+
+  database-data:
     driver: local
