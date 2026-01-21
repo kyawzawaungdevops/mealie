@@ -38,7 +38,7 @@ services:
     image: postgres:15
     restart: no
     volumes:
-      - database-data:/var/lib/postgresql
+      - database:/var/lib/postgresql
     ports:
       - "5432:5432"
     environment:
@@ -49,5 +49,5 @@ volumes:
   mealie-data:
     driver: local
 
-  database-data:
+  database:
     driver: local
